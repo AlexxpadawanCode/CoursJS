@@ -143,3 +143,101 @@ boxes.forEach((box) => {
         e.target.style.transform = "scale(0.7)";
     })
 })
+
+
+//-------------------------------------------------------
+// addEventListener VS onclick (pas ouf le onclick)
+// document.body.onclick = () => {
+//   console.log("scroll");
+// };
+
+//Bubbling => fin (de base l'eventlistener est paramétré en mode Bubbling)
+document.body.addEventListener('click', () => {
+  console.log("click 1");
+});
+
+//Usecapture
+document.body.addEventListener('click', () => {
+  console.log("click 2");
+}, true);
+
+//gomakethings.com
+
+//-----------------------------------------------------------
+//Stop propagation
+// questionContainer.addEventListener("click", (e) => {
+//   alert("test");
+//   e.stopPropagation();
+// });
+
+//removeEventListener
+
+//----------------------------------------------------------
+// BOM
+
+// console.log(window.innerHeight);
+// console.log(window.scrollY);
+//popup
+// window.open('http://google.com', "cours js", "height=600, width=800")
+//window.close()
+
+//Evenements adossés à window
+//alert()
+
+//confirm
+btn2.addEventListener("click", () => {
+  confirm("Voulez vous vraiment vous trompez")
+})
+
+//prompt
+btn1.addEventListener("click", () => {
+  let answer = prompt("Entrez votre nom");
+
+  questionContainer.innerHTML += "<h3>Bravo " + answer + "</h3>";
+})
+
+setTimeout(() => {
+  //logique à executer
+  questionContainer.style.borderRadius = "300px"
+}, 2000);
+
+let interval = setInterval(() => {
+  document.body.innerHTML += `
+    <div class='box'>
+      <h2>Nouvelle Boite !</h2>
+    </div>
+    `
+}, 100000)
+
+document.body.addEventListener("click", () => {
+  clearInterval(interval);
+});
+
+//Location
+// console.log(location.href);
+// console.log(location.host);
+// console.log(location.pathname);
+// console.log(location.search);
+// location.replace("lien d'un site")
+
+// window.onload = () => {
+//   location.href = "lien d'un site"
+// }
+
+// Navigator
+//console.log(navigator.userAgent);
+
+//developer.mozilla.org
+
+//History
+// console.log(history);
+//window.history.back();
+//history.go(-2)
+
+//-------------------------------------------------------
+//SetProperty
+
+window.addEventListener("mousemove", (e) => {
+  nav.style.setProperty("--x", e.layerX + "px");
+  nav.style.setProperty("--y", e.layerY + "px");
+})
